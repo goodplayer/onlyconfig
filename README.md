@@ -2,11 +2,15 @@
 
 OnlyConfig is a distributed, easy-to-use and powerful configure system.
 
+**Key characteristics**
+
+1. Distributed configure: Supporting as many applications as you want with strong reliability, performance, flexibility
+2. Easy-to-use: Speed up your development from tiny applications to large.
+3. Extensible: Custom your own server and client to extend the possibility of configuration.
+
 ## 1. Getting started
 
 ### 1.1 Server
-
-#### 1.1.1 Start server manually
 
 1. Setup ``postgresql`` database.
 2. Create database and import database ddl in the ``docs`` folder.
@@ -15,10 +19,6 @@ OnlyConfig is a distributed, easy-to-use and powerful configure system.
 ```text
 ./onlyconfig -http=:8800 -postgres=postgres://admin:admin127.0.0.1:5432/onlyconfig
 ```
-
-#### 1.1.2 Start server using docker
-
-TBD
 
 ### 1.2 Go Client
 
@@ -60,16 +60,12 @@ func main() {
 	c.WaitStartupConfigureLoaded(context.Background())
 
 	// Use the configuration in the application - retrieving the container everytime
-	var container = *atomicContainer.Load().(*ConfigureContainer)
+	var container = atomicContainer.Load().(*ConfigureContainer)
 }
 
 ```
 
-* General usage - using general api
-
-TBD
-
-### 1.3 Web manager
+### 1.3 Web Manager
 
 TBD
 
@@ -80,6 +76,30 @@ TBD
 * [x] OnlyConfig client: Go language
 * [ ] OnlyConfig web manager
 
-## 3. Design
+## 3. User Guide
+
+### 3.1 Server Installation
+
+#### 3.1.1 Start server manually
+
+TBD
+
+#### 3.1.2 Start server using docker
+
+TBD
+
+### 3.2 Go Client
+
+* Suggested usage - using struct as configure container
+
+TBD
+
+* General usage - using general api
+
+TBD
+
+### 3.3 Web Manager
+
+## 4. Design
 
 TBD
