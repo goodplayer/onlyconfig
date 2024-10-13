@@ -8,6 +8,8 @@ OnlyConfig is a distributed, easy-to-use and powerful configure system.
 2. Easy-to-use: Speed up your development from tiny applications to large.
 3. Extensible: Custom your own server and client to extend the possibility of configuration.
 
+[TOC]
+
 ## 1. Getting started
 
 ### 1.1 Server
