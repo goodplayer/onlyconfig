@@ -6,7 +6,7 @@ OnlyConfig is a distributed, easy-to-use and powerful configure system.
 
 1. Distributed configure: Supporting as many applications as you want with strong reliability, performance, flexibility
 2. Easy-to-use: Speed up your development from tiny applications to large.
-3. Extensible: Custom your own server and client to extend the possibility of configuration.
+3. Flexible: Custom your own server and client to extend the possibility of configuration.
 
 [TOC]
 
@@ -100,7 +100,46 @@ TBD
 
 TBD
 
+**Note**
+
+1. Configure callback should not raise any panic which will cause client background update task exit
+
 ### 3.3 Web Manager
+
+TBD
+
+* Levels of configuration(As selectors)
+    * Environment: default envs including DEV, UAT, PreProduction, PROD, etc.
+    * Datacenter
+    * Namespace(groups of applications)
+    * App
+* Configure key properties
+    * Group
+    * Key
+    * Value
+    * Version(auto generated)
+* Configure content type(supporting validation before publishing)
+    * General(text)
+    * Json
+    * Toml
+    * Yaml
+    * Properties
+    * Xml
+    * Html
+
+**Note**
+
+1. Currently, items including application, environment, datacenter, namespace and others could not be deleted due to the
+   possibilities to cause production issues. If the records are required to be removed(for example offline an
+   application or a datacenter), a manual cleanup task is required. Please refer to `cleanjob` tool.
+
+### 3.4 OnlyAgent
+
+TBD
+
+### 3.5 Cleanjob
+
+TBD
 
 ## 4. Design
 

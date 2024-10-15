@@ -120,7 +120,7 @@ create index on onlyconfig_config (config_namespace, config_key);
 
 create index on onlyconfig_config (config_namespace, config_env, config_datacenter, config_key);
 
-comment on column onlyconfig_config.config_content_type is 'general:"no specific file type", json:"json file", toml:"toml file", yaml:"yaml file", properties:"properties file"';
+comment on column onlyconfig_config.config_content_type is 'general:"no specific file type", json:"json file", toml:"toml file", yaml:"yaml file", properties:"properties file", xml:"xml", html:"html"';
 
 comment on column onlyconfig_config.config_status is '0-normal, 1-deleted';
 
