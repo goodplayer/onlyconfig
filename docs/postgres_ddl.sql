@@ -47,6 +47,10 @@ create table onlyconfig_datacenter
     primary key (datacenter_name)
 );
 
+insert into onlyconfig_datacenter (datacenter_name, datacenter_description, time_created, time_updated)
+values ('default', 'default datacenter', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
+        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000);
+
 create table onlyconfig_environment
 (
     env_name        varchar not null,
@@ -78,6 +82,19 @@ create table onlyconfig_application
 );
 
 create unique index on onlyconfig_application (application_name);
+
+create table onlyconfig_application_detail
+(
+    application_detail_id bigserial not null,
+    application_id        bigint    not null,
+    env_name              varchar   not null,
+    datacenter_name       varchar   not null,
+    time_created          bigint    not null,
+    time_updated          bigint    not null,
+    primary key (application_detail_id)
+);
+
+create unique index on onlyconfig_application_detail (application_id, env_name, datacenter_name);
 
 -- namespace equals group in the configure api
 create table onlyconfig_namespace
@@ -127,15 +144,15 @@ comment on column onlyconfig_config.config_status is '0-normal, 1-deleted';
 -- defines all owner and non-owner namespaces related to the application
 create table onlyconfig_app_ns_mapping
 (
-    mapping_id     bigserial not null,
-    application_id bigint    not null,
-    namespace_id   bigint    not null,
-    time_created   bigint    not null,
-    time_updated   bigint    not null,
+    mapping_id            bigserial not null,
+    application_detail_id bigint    not null,
+    namespace_id          bigint    not null,
+    time_created          bigint    not null,
+    time_updated          bigint    not null,
     primary key (mapping_id)
 );
 
-create unique index on onlyconfig_app_ns_mapping (application_id, namespace_id);
+create unique index on onlyconfig_app_ns_mapping (application_detail_id, namespace_id);
 
 create table onlyconfig_org
 (
@@ -170,9 +187,11 @@ comment on column onlyconfig_user.user_status is '0-normal, 1-disabled';
 
 comment on column onlyconfig_user.external_type is '(empty):"internal user", otherwise:"specific type of user source, e.g. LDAP,SSO,etc."';
 
-insert into onlyconfig_user (user_id, username, password, display_name, email, user_status, external_type, external_user_id,
+insert into onlyconfig_user (user_id, username, password, display_name, email, user_status, external_type,
+                             external_user_id,
                              time_created, time_updated)
-values ('1', 'admin', '$2a$14$EQS3g4pLrTOdR03mKnE8i.zxbJvOYWOmZ4SjwZ.hkM0WdjENnp3sa', 'administrator', 'example@example.com', 0, '', '',
+values ('1', 'admin', '$2a$14$EQS3g4pLrTOdR03mKnE8i.zxbJvOYWOmZ4SjwZ.hkM0WdjENnp3sa', 'administrator',
+        'example@example.com', 0, '', '',
         EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000);
 
 create table onlyconfig_user_org_mapping
