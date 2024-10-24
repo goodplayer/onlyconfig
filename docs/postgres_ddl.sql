@@ -61,14 +61,14 @@ create table onlyconfig_environment
 );
 
 insert into onlyconfig_environment (env_name, env_description, time_created, time_updated)
-VALUES ('PROD', 'production environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
+VALUES ('DEV', 'production environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
         EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000),
-       ('UAT', 'UAT environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
-        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000),
-       ('PRE', 'pre-production environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
-        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000),
-       ('DEV', 'development environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000,
-        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000);
+       ('UAT', 'UAT environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 1,
+        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 1),
+       ('PRE', 'pre-production environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 2,
+        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 2),
+       ('PROD', 'development environment', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 3,
+        EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000 + 3);
 
 create table onlyconfig_application
 (
