@@ -199,6 +199,7 @@ create table onlyconfig_user_org_mapping
     user_org_mapping_id bigserial not null,
     org_id              varchar   not null,
     user_id             varchar   not null,
+    role_type           int       not null,
     time_created        bigint    not null,
     time_updated        bigint    not null,
     primary key (user_org_mapping_id)
@@ -208,5 +209,7 @@ create unique index on onlyconfig_user_org_mapping (org_id, user_id);
 
 create unique index on onlyconfig_user_org_mapping (user_id, org_id);
 
-insert into onlyconfig_user_org_mapping (org_id, user_id, time_created, time_updated)
-values ('1', '1', EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000);
+comment on column onlyconfig_user_org_mapping.role_type is '1:owner, 2:user';
+
+insert into onlyconfig_user_org_mapping (org_id, user_id, role_type, time_created, time_updated)
+values ('1', '1', 1, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP) * 1000);
