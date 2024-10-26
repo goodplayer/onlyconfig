@@ -29,14 +29,18 @@ create sequence cfg_seq increment by 16 minvalue 1 maxvalue 9223372036854775807 
 
 -- ===========================================web manager tables===================================================
 -- management service database model:
---     independent entities: datacenter, environment
+--     independent entities: datacenter, environment, namespace
 --     application => namespace
 --     application [links] N namespaces
---     namespace (+ environment + datacenter) => config
+--     namespace (+ environment + datacenter) => config (multiple applications may share the same configurations)
 --     org [has] application / namespace
 --     org => user
 
 create sequence onlyconfig_version_seq increment by 16 minvalue 1 maxvalue 9223372036854775807 start 1 cache 1 no cycle;
+
+-- ---------------------------------------------------------------------------------------
+-- application related metadata
+-- ---------------------------------------------------------------------------------------
 
 create table onlyconfig_datacenter
 (
@@ -96,33 +100,48 @@ create table onlyconfig_application_detail
 
 create unique index on onlyconfig_application_detail (application_id, env_name, datacenter_name);
 
+-- ---------------------------------------------------------------------------------------
+-- configuration metadata and data
+-- ---------------------------------------------------------------------------------------
+
+-- Namespaces owned by applications
 -- namespace equals group in the configure api
 create table onlyconfig_namespace
 (
-    namespace_id          bigserial not null,
-    namespace_name        varchar   not null,
-    namespace_description varchar   not null,
-    namespace_type        varchar   not null,
-    namespace_app         bigint    not null,
-    namespace_owner_org   varchar   not null,
-    time_created          bigint    not null,
-    time_updated          bigint    not null,
-    primary key (namespace_id)
+    namespace_name        varchar not null,
+    namespace_description varchar not null,
+    namespace_type        varchar not null,
+    namespace_app         bigint  not null,
+    time_created          bigint  not null,
+    time_updated          bigint  not null,
+    primary key (namespace_name)
 );
-
-create unique index on onlyconfig_namespace (namespace_name);
 
 create index on onlyconfig_namespace (namespace_app);
 
-create index on onlyconfig_namespace (namespace_owner_org);
+create index on onlyconfig_namespace ((case when namespace_type = 'public' then namespace_type end));
 
 comment on column onlyconfig_namespace.namespace_type is 'app:"application namespace", public:"public namespace"';
+
+-- Namespaces linked by application
+-- Usage: applications uses public namespaces
+create table onlyconfig_app_ns_link
+(
+    mapping_id     bigserial not null,
+    application_id bigint    not null,
+    namespace_name varchar   not null,
+    time_created   bigint    not null,
+    time_updated   bigint    not null,
+    primary key (mapping_id)
+);
+
+create unique index on onlyconfig_app_ns_link (application_id, namespace_name);
 
 create table onlyconfig_config
 (
     config_id           bigserial not null,
     config_key          varchar   not null,
-    config_namespace    bigint    not null,
+    config_namespace    varchar   not null,
     config_env          varchar   not null,
     config_datacenter   varchar   not null,
     config_content_type varchar   not null,
@@ -141,18 +160,9 @@ comment on column onlyconfig_config.config_content_type is 'general:"no specific
 
 comment on column onlyconfig_config.config_status is '0-normal, 1-deleted';
 
--- defines all owner and non-owner namespaces related to the application
-create table onlyconfig_app_ns_mapping
-(
-    mapping_id            bigserial not null,
-    application_detail_id bigint    not null,
-    namespace_id          bigint    not null,
-    time_created          bigint    not null,
-    time_updated          bigint    not null,
-    primary key (mapping_id)
-);
-
-create unique index on onlyconfig_app_ns_mapping (application_detail_id, namespace_id);
+-- ---------------------------------------------------------------------------------------
+-- user related metadata
+-- ---------------------------------------------------------------------------------------
 
 create table onlyconfig_org
 (
