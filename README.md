@@ -4,11 +4,16 @@ OnlyConfig is a distributed, easy-to-use and powerful configure system.
 
 **Key characteristics**
 
-1. Distributed configure: Supporting as many applications as you want with strong reliability, performance, flexibility
+1. Distributed configure: Supporting as many applications as you want with strong reliability, performance, flexibility.
 2. Easy-to-use: Speed up your development from tiny applications to large.
 3. Flexible: Custom your own server and client to extend the possibility of configuration.
+4. Minimum dependencies: Simplify dependencies, less complexity.
+5. Frequently upgrade: supporting more requirements in reality, latest go version with dependencies and modern software
+   and hardware
 
 [TOC]
+
+[LOGO]
 
 ## 1. Getting started
 
@@ -46,7 +51,9 @@ func main() {
 	// Create the configure client with server list and options
 	c := client.NewClient([]string{"http://127.0.0.1:8800"}, client.ClientOptions{
 		// Add any selector parameters according to the settings on server side
-		SelectorDatacenter: "dc1",
+        SelectorApp:         "app1",
+        SelectorEnvironment: "env1",
+        SelectorDatacenter:  "dc1",
 	})
 	// Create advanced client
 	ca := client.NewClientAdv(c)
@@ -69,14 +76,25 @@ func main() {
 
 ### 1.3 Web Manager
 
-TBD
+* Start web manager
+
+```text
+./webmgr -http=:8880 -postgres=postgres://admin:admin127.0.0.1:5432/onlyconfig
+```
+
+* Open browser and add configurations to the app
+
+### 1.4 Getting start to have fun with OnlyConfig 
 
 ## 2. Features
 
 * [x] OnlyConfig server
 * [x] OnlyConfig server: postgresql database storage
 * [x] OnlyConfig client: Go language
-* [ ] OnlyConfig web manager
+* [x] OnlyConfig web manager
+* [ ] OnlyConfig agent
+* [ ] OnlyConfig cmd
+* [ ] OnlyConfig cleanjob
 
 ## 3. User Guide
 
@@ -111,7 +129,7 @@ TBD
 * Levels of configuration(As selectors)
     * Environment: default envs including DEV, UAT, PreProduction, PROD, etc.
     * Datacenter
-    * Namespace(groups of applications)
+    * Namespace(groups of an application)
     * App
 * Configure key properties
     * Group
@@ -127,6 +145,16 @@ TBD
     * Xml
     * Html
 
+Pending implemented items
+
+* Link public namespaces to apps as reference configurations
+* Release history/Rollback
+* Multi-datacenter comparison/publish
+* Role based management: user, owner, administrator
+* Special handling for production or specific env: reviewing, different appearance
+* Better role/naming control: including namespace naming format, etc.
+* More configure content editor support
+
 **Note**
 
 1. Currently, items including application, environment, datacenter, namespace and others could not be deleted due to the
@@ -138,6 +166,10 @@ TBD
 TBD
 
 ### 3.5 Cleanjob
+
+TBD
+
+### 3.6 OnlyConfigCommand - ocmd
 
 TBD
 

@@ -59,17 +59,19 @@ func TestUserJwt(t *testing.T) {
 		Name:     "username",
 		Email:    "example@example.com",
 	}
-	token, err := u.GenerateJwtToken(cfg.JwtSecrets[1])
+	token, uuid, err := u.GenerateJwtToken(cfg.JwtSecrets[1])
 	if err != nil {
 		t.Fatal(err)
 	}
+	t.Log("token:", token)
+	t.Log("token uuid:", uuid)
 	if ok, err := uh.ValidateUserJwtToken(token); err != nil {
 		t.Fatal(err)
 	} else if !ok {
 		t.Fatal(errors.New("token invalid"))
 	}
 
-	token2, err := u.GenerateJwtToken([]byte("11111111111111111111111111111111"))
+	token2, _, err := u.GenerateJwtToken([]byte("11111111111111111111111111111111"))
 	if err != nil {
 		t.Fatal(err)
 	}

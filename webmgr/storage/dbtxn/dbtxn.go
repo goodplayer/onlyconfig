@@ -43,6 +43,17 @@ func (t *TxnMgr) CommitTxn(ctx context.Context) error {
 	return nil
 }
 
+func (t *TxnMgr) RollbackTxn(ctx context.Context) error {
+	session := GetTxn(ctx)
+	if session == nil {
+		return errors.New("no session")
+	}
+	if err := session.Rollback(); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (t *TxnMgr) FinalizeTxn(ctx context.Context) error {
 	session := GetTxn(ctx)
 	if session == nil {
