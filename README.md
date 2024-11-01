@@ -20,7 +20,7 @@ OnlyConfig is a distributed, easy-to-use and powerful configure system.
 ### 1.1 Server
 
 1. Setup ``postgresql`` database.
-2. Create database and import database ddl in the ``docs`` folder.
+2. Create database and import database ddl files in the ``docs`` folder.
 3. Start ``OnlyConfig`` server
 
 ```text
@@ -84,7 +84,7 @@ func main() {
 
 * Open browser and add configurations to the app
 
-### 1.4 Getting start to have fun with OnlyConfig 
+### 1.4 Getting start and have fun with OnlyConfig !!!
 
 ## 2. Features
 
@@ -98,7 +98,7 @@ func main() {
 
 ## 3. User Guide
 
-### 3.1 Server Installation
+### 3.1 Server
 
 #### 3.1.1 Start server manually
 
@@ -107,6 +107,13 @@ TBD
 #### 3.1.2 Start server using docker
 
 TBD
+
+#### 3.1.3 Built server
+
+```text
+go get ./...
+go build
+```
 
 ### 3.2 Go Client
 
@@ -154,11 +161,12 @@ Pending implemented items
 * Special handling for production or specific env: reviewing, different appearance
 * Better role/naming control: including namespace naming format, etc.
 * More configure content editor support
+* Support binary file as configure
 
 **Note**
 
 1. Currently, items including application, environment, datacenter, namespace and others could not be deleted due to the
-   possibilities to cause production issues. If the records are required to be removed(for example offline an
+   possibility to cause production issues. If the records are required to be removed(for example offline an
    application or a datacenter), a manual cleanup task is required. Please refer to `cleanjob` tool.
 
 ### 3.4 OnlyAgent
