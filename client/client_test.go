@@ -10,7 +10,9 @@ import (
 
 func TestClientBasic(t *testing.T) {
 	c := NewClient([]string{"http://127.0.0.1:8800"}, ClientOptions{
-		SelectorDatacenter: "dc1",
+		SelectorApp:         "app1",
+		SelectorEnvironment: "env1",
+		SelectorDatacenter:  "dc1",
 	})
 
 	c.AddConfigurationRequirement(RequiredConfig{

@@ -16,6 +16,7 @@ var httpAddr string
 var postgresAddr string
 
 func init() {
+	//FIXME default ports: read-http=8800, read-https=8801, write-http=8802, write-https=8803
 	flag.StringVar(&httpAddr, "http", ":8800", "http listen address")
 	flag.StringVar(&postgresAddr, "postgres", "postgres://admin:admin@127.0.0.1:5432/onlyconfig", "postgres connection string")
 	flag.Parse()
