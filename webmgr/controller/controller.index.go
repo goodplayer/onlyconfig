@@ -50,13 +50,14 @@ func (cc *ControllerContainer) addIndex(r *chi.Mux) {
 			}
 			http.FileServer(http.FS(scriptsFs)).ServeHTTP(w, r)
 		})
-	}
-
-	//FIXME default router: set index.html preact project container as default router
-	{
-	}
-
-	//FIXME add additional files including .svg and so on
-	{
+		// icon file
+		//FIXME need a new icon
+		r.Get("/{name}.svg", func(w http.ResponseWriter, r *http.Request) {
+			var fp = r.RequestURI
+			if strings.HasPrefix(fp, "/") {
+				fp = fp[1:]
+			}
+			http.FileServer(http.FS(scriptsFs)).ServeHTTP(w, r)
+		})
 	}
 }
