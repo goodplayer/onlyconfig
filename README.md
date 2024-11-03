@@ -51,9 +51,9 @@ func main() {
 	// Create the configure client with server list and options
 	c := client.NewClient([]string{"http://127.0.0.1:8800"}, client.ClientOptions{
 		// Add any selector parameters according to the settings on server side
-        SelectorApp:         "app1",
-        SelectorEnvironment: "env1",
-        SelectorDatacenter:  "dc1",
+		SelectorApp:         "app1",
+		SelectorEnvironment: "env1",
+		SelectorDatacenter:  "dc1",
 	})
 	// Create advanced client
 	ca := client.NewClientAdv(c)
@@ -223,6 +223,9 @@ When the hook is invoked, the following environment variables are set for the ho
 * ONLYAGENT_KEY
 * ONLYAGENT_SEL
 * ONLYAGENT_OPTSEL
+
+Note: There is a hard time limit for the hook to be running, which is 60s and cannot be changed. Please ensure that the
+hook can complete its task within the time.
 
 #### Example usage
 
