@@ -633,7 +633,7 @@ export function ConfigureListView(props) {
                                     datacenter:[<b>{selectedConfiguration.dc}</b>]</h5>
                                 <h5>Current namespace:[<b>{selectedConfiguration.ns}</b>],
                                     key:[<b>{selectedConfiguration.key}</b>]</h5>
-                                <div className="card">
+                                <div className="card" style={"margin: 5px 0px"}>
                                     <div className="card-header">
                                         Go client
                                     </div>
@@ -649,6 +649,25 @@ c := NewClient([]string{"http://127.0.0.1:8800"}, ClientOptions{
 
 // Step2. register listener information when using the current configuration
 atomicContainer, _ := ca.RegisterJsonContainer("${selectedConfiguration.ns}", "${selectedConfiguration.key}", new(ConfigureContainer))
+                                            `}
+                                        </pre>
+                                    </div>
+                                </div>
+
+                                <div className="card" style={"margin: 5px 0px"}>
+                                    <div className="card-header">
+                                        General client (selectors is string formatted)
+                                    </div>
+                                    <div className="card-body">
+                                        <pre className="card-text" style="font-family: Consolas, Monaco, monospace;">
+                                            {`
+1. Selectors: app=${selectedConfiguration.app},dc=${selectedConfiguration.dc},env=${selectedConfiguration.env}
+2. No Optional Selectors set
+3. Group: ${selectedConfiguration.ns}
+4. Key: ${selectedConfiguration.key}
+
+OnlyAgent flags:
+-sel app=${selectedConfiguration.app},dc=${selectedConfiguration.dc},env=${selectedConfiguration.env} -group ${selectedConfiguration.ns} -key ${selectedConfiguration.key}
                                             `}
                                         </pre>
                                     </div>
