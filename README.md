@@ -92,7 +92,7 @@ func main() {
 * [x] OnlyConfig server: postgresql database storage
 * [x] OnlyConfig client: Go language
 * [x] OnlyConfig web manager
-* [ ] OnlyConfig agent
+* [x] OnlyConfig agent
 * [ ] OnlyConfig cmd
 * [ ] OnlyConfig cleanjob
 
@@ -152,7 +152,7 @@ TBD
     * Xml
     * Html
 
-Pending implemented items
+Pending implemented items - TBD
 
 * Link public namespaces to apps as reference configurations
 * Release history/Rollback
@@ -171,7 +171,49 @@ Pending implemented items
 
 ### 3.4 OnlyAgent
 
-TBD
+OnlyAgent is an independent agent to pull configurations from onlyconfig server and write them to files.
+
+The purpose is to support configuration usage in the applications that don't have available clients in the programming
+languages.
+
+Pending implemented items - TBD
+
+* Add configuration first time loaded signal for informing consumers of ready to load configuration
+  * General hook solution
+
+#### How to use
+
+##### Method 1: Pull single configuration without extra preparation
+
+```text
+./onlyagent -sel dc=dc1,env=DEV -optsel beta=1 -group group1 -key key1 -output application.yaml -server http://127.0.0.1:8800 -server http://127.0.0.2:8800
+```
+
+##### Method 2: Pull multiple configuration with configure file provided
+
+Prepare configuration file, for example: `demo.toml`
+
+```text
+[[config_list]]
+selectors = "dc=dc1,env=DEV"
+optional_selectors = "beta=1"
+group = "group1"
+key = "key1"
+output = "application.yaml"
+
+[[config_list]]
+selectors = "dc=dc2"
+optional_selectors = "beta=2"
+group = "group2"
+key = "key2"
+output = "application2.properties"
+```
+
+Start agent
+
+```text
+./onlyagent -config demo.toml -server http://127.0.0.1:8800 -server http://127.0.0.2:8800
+```
 
 ### 3.5 Cleanjob
 

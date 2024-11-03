@@ -4,6 +4,7 @@ go 1.23.2
 
 require (
 	gitea.com/go-chi/binding v0.0.0-20240430071103-39a851e106ed
+	github.com/BurntSushi/toml v1.4.0
 	github.com/fxamacker/cbor/v2 v2.7.0
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/go-chi/cors v1.2.1
@@ -11,7 +12,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.7.1
-	github.com/meidoworks/nekoq-component v0.10.11
+	github.com/meidoworks/nekoq-component v0.10.12
 	golang.org/x/crypto v0.28.0
 	xorm.io/xorm v1.3.9
 )

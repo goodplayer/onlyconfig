@@ -2,6 +2,8 @@ gitea.com/go-chi/binding v0.0.0-20240430071103-39a851e106ed h1:EZZBtilMLSZNWtHHc
 gitea.com/go-chi/binding v0.0.0-20240430071103-39a851e106ed/go.mod h1:E3i3cgB04dDx0v3CytCgRTTn9Z/9x891aet3r456RVw=
 gitea.com/xorm/sqlfiddle v0.0.0-20180821085327-62ce714f951a h1:lSA0F4e9A2NcQSqGqTOXqu2aRi/XEQxDCBwM8yJtE6s=
 gitea.com/xorm/sqlfiddle v0.0.0-20180821085327-62ce714f951a/go.mod h1:EXuID2Zs0pAQhH8yz+DNjUbjppKQzKFAn28TMYPB6IU=
+github.com/BurntSushi/toml v1.4.0 h1:kuoIxZQy2WRRk1pttg9asf+WVv6tWQuBNVmK8+nqPr0=
+github.com/BurntSushi/toml v1.4.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/ajg/form v1.5.1 h1:t9c7v8JUKu/XxOGBU0yjNpaMloxGEJhUkqFRq0ibGeU=
 github.com/ajg/form v1.5.1/go.mod h1:uL1WgH+h2mgNtvBq0339dVnzXdBETtL2LeUXaIv25UY=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -49,10 +51,10 @@ github.com/mattn/go-isatty v0.0.16 h1:bq3VjFmv/sOjHtdEhmkEV4x1AJtvUvOJ2PFAZ5+peK
 github.com/mattn/go-isatty v0.0.16/go.mod h1:kYGgaQfpe5nmfYZH+SKPsOc2e4SrIfOl2e/yFXSvRLM=
 github.com/mattn/go-sqlite3 v1.14.16 h1:yOQRA0RpS5PFz/oikGwBEqvAWhWg5ufRz4ETLjwpU1Y=
 github.com/mattn/go-sqlite3 v1.14.16/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
-github.com/meidoworks/nekoq-component v0.10.0 h1:YP9UN50VyVLeDSJDQ3MIUHQ93D/fcnXsmfOa4KJeCyU=
-github.com/meidoworks/nekoq-component v0.10.0/go.mod h1:MGpOCrxgas6n4zS2GFRPZc6mLY46b4y853eS0p3IIcw=
 github.com/meidoworks/nekoq-component v0.10.11 h1:A5pfDEZcQLrrbsQkWo2wbZaW3GbhADn5W2LsKWd+KZM=
 github.com/meidoworks/nekoq-component v0.10.11/go.mod h1:MlTsRJ1HZFh7zVQeJYhMEmezev0QGhW6MORjyIhTG5Y=
+github.com/meidoworks/nekoq-component v0.10.12 h1:ZTeiqkvlpAMm667uR/wNi8WlAArIP+gilXAsTYvAe94=
+github.com/meidoworks/nekoq-component v0.10.12/go.mod h1:MlTsRJ1HZFh7zVQeJYhMEmezev0QGhW6MORjyIhTG5Y=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
