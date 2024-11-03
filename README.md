@@ -176,17 +176,12 @@ OnlyAgent is an independent agent to pull configurations from onlyconfig server 
 The purpose is to support configuration usage in the applications that don't have available clients in the programming
 languages.
 
-Pending implemented items - TBD
-
-* Add configuration first time loaded signal for informing consumers of ready to load configuration
-  * General hook solution
-
 #### How to use
 
 ##### Method 1: Pull single configuration without extra preparation
 
 ```text
-./onlyagent -sel dc=dc1,env=DEV -optsel beta=1 -group group1 -key key1 -output application.yaml -server http://127.0.0.1:8800 -server http://127.0.0.2:8800
+./onlyagent -sel dc=dc1,env=DEV -optsel beta=1 -group group1 -key key1 -output application.yaml -hook pwd -server http://127.0.0.1:8800 -server http://127.0.0.2:8800
 ```
 
 ##### Method 2: Pull multiple configuration with configure file provided
@@ -200,6 +195,7 @@ optional_selectors = "beta=1"
 group = "group1"
 key = "key1"
 output = "application.yaml"
+hook = "pwd"
 
 [[config_list]]
 selectors = "dc=dc2"
@@ -213,6 +209,38 @@ Start agent
 
 ```text
 ./onlyagent -config demo.toml -server http://127.0.0.1:8800 -server http://127.0.0.2:8800
+```
+
+#### Hook
+
+`Hook` is used as a callback when configurations are written to files and ready to load.
+
+`Hook` in the parameter or configure file should be an executable file, including commands or scripts or etc.
+
+When the hook is invoked, the following environment variables are set for the hook to consume:
+
+* ONLYAGENT_GROUP
+* ONLYAGENT_KEY
+* ONLYAGENT_SEL
+* ONLYAGENT_OPTSEL
+
+#### Example usage
+
+```text
+Run agent:
+go run . -sel app=onlyconfig,dc=default,env=PROD -group GeneralOrg.onlyconfig -key notice -output application.log -hook "D:\hook.bat" -server http://10.11.0.7:8800
+
+Output file:
+application.log
+
+Hook file:
+D:\hook.bat
+
+In the hook file, the following environment variables are set:
+ONLYAGENT_GROUP=GeneralOrg.onlyconfig
+ONLYAGENT_KEY=notice
+ONLYAGENT_SEL=app=onlyconfig,dc=default,env=PROD
+ONLYAGENT_OPTSEL=
 ```
 
 ### 3.5 Cleanjob
