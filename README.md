@@ -91,6 +91,8 @@ func main() {
 * [x] OnlyConfig server
 * [x] OnlyConfig server: postgresql database storage
 * [x] OnlyConfig client: Go language
+    * Supporting configure client
+      in [https://github.com/meidoworks/nekoq-component](https://github.com/meidoworks/nekoq-component)
 * [x] OnlyConfig web manager
 * [x] OnlyConfig agent
 * [ ] OnlyConfig cmd
