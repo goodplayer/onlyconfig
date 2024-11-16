@@ -12,8 +12,8 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.7.1
-	github.com/meidoworks/nekoq-component v0.10.12
-	golang.org/x/crypto v0.28.0
+	github.com/meidoworks/nekoq-component v0.10.14
+	golang.org/x/crypto v0.29.0
 	xorm.io/xorm v1.3.9
 )
 
@@ -29,7 +29,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/text v0.19.0 // indirect
+	golang.org/x/sync v0.9.0 // indirect
+	golang.org/x/text v0.20.0 // indirect
 	xorm.io/builder v0.3.13 // indirect
 )
